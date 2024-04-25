@@ -6,7 +6,7 @@ import { PostagemService } from "./services/postagem.services";
 import { PostagemController } from "./controllers/postagem.controller";
 import { Module } from "@nestjs/common";
 
-Module ({
+@Module ({
     imports:[TypeOrmModule.forFeature([Postagem])],
     providers: [PostagemService],
     controllers: [PostagemController],
