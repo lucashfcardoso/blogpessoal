@@ -16,14 +16,14 @@ export class PostagemService {
 
     async findAll(): Promise<Postagem[]> {                        //Método listar todas
         return await this.postagemRepository.find({
-            relations: {tema:true}                                //Relacionar com tema
+            relations: {tema:true, usuario: true}                                //Relacionar com tema
         });
     }
 
     async findById(id: number): Promise<Postagem> {               //Métodos listar por id
         let postagem = await this.postagemRepository.findOne({
             where: {id}, 
-            relations: {tema:true}                                //Relacionar com tema
+            relations: {tema:true, usuario: true}                                //Relacionar com tema
         });
 
         if (!postagem) 
@@ -34,7 +34,7 @@ export class PostagemService {
     async findByTitulo (titulo: string): Promise<Postagem[]> {    //Métodos listar por título
         return await this.postagemRepository.find ({
             where: {titulo: ILike (`%${titulo}%`)},
-            relations: {tema:true}                                //Relacionar com tema
+            relations: {tema:true, usuario: true}                                //Relacionar com tema
         })
     }
 

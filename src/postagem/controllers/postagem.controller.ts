@@ -1,9 +1,11 @@
 //CLASSE CONTROLLER - RESPONSÁVEL POR MOSTRAR PARA NÓS OS MÉTODOS CRIADOS NA CLASSE SERVICE 
 
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put, UseGuards } from "@nestjs/common";
 import { PostagemService } from "../services/postagem.services";
 import { Postagem } from "../entities/postagem.entity";
+import { JwtAuthGuard } from "src/auth/guard/jwt-auth.guard";
  
+@UseGuards(JwtAuthGuard)
 @Controller("/postagens")                                                      //Final da URL, fica: localhost:4000/postagens
 export class PostagemController {
     constructor (private readonly postagemService: PostagemService) {}
